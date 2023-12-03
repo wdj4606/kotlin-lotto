@@ -29,6 +29,10 @@ class StringSplitterTest : DescribeSpec({
                 val split = StringSplitter.getDelimiters("//_\n1_2_3_4")
                 split shouldBe listOf('_')
             }
+            it("구분자 입력이 없는 경우") {
+                val split = StringSplitter.getDelimiters("1_2_3_4")
+                split shouldBe listOf(',', ':')
+            }
         }
     }
 })

@@ -17,5 +17,21 @@ class StringCalculatorTest : DescribeSpec({
                 split shouldBe 6
             }
         }
+        context("합계가 0일때") {
+            it("값이 존재하지 않음") {
+                val split = stringCalculator.calc("")
+                split shouldBe 0
+            }
+            it("값이 모두 0") {
+                val split = stringCalculator.calc("0,0:0")
+                split shouldBe 0
+            }
+        }
+        context("커스텀 구분자가 주어질 떄") {
+            it("_ 문자로 커스텀 구분") {
+                val split = stringCalculator.calc("//_\n1_2_3")
+                split shouldBe 6
+            }
+        }
     }
 })

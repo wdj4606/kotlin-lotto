@@ -3,13 +3,15 @@ package lotto.utils
 class StringSplitter {
     companion object {
         fun getDelimiters(input: String): List<Char> {
-            val result = Regex("//(.)\n").find(input)
+            val result = Regex(DELIMITER_PATTERN).find(input)
                 ?.value
                 ?.get(CUSTOM_DELIMITER_INDEX)
-                ?: throw IllegalArgumentException("invalid input")
-            return listOf(result)
+            return result?.let { listOf(it) } ?: DEFAULT_DELIMITERS
         }
-        fun splitByDelimiters(input: String, delimiters: List<Char>): List<Int> {
+        fun splitByDelimiters(calcInput: String, delimiters: List<Char>): List<Int> {
+            val input = calcInput.replace(DELIMITER_PATTERN.toRegex(), "")
+            if (input.isBlank()) return listOf()
+
             val regex = delimiters.joinToString(prefix = "[", postfix = "]").toRegex()
             return input
                 .split(regex)
@@ -17,5 +19,7 @@ class StringSplitter {
         }
 
         val CUSTOM_DELIMITER_INDEX = 2
+        val DELIMITER_PATTERN = "//(.)\n"
+        val DEFAULT_DELIMITERS = listOf(',', ':')
     }
 }
