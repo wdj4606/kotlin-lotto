@@ -30,6 +30,12 @@ class LottoTest : DescribeSpec({
                 (lotto[3] < lotto[4]) shouldBe true
                 (lotto[4] < lotto[5]) shouldBe true
             }
+            it("로또를 비교") {
+                val lotto1 = Lotto(listOf(1, 2, 3, 4, 5, 6))
+                val lotto2 = Lotto(listOf(1, 2, 3, 7, 8, 9))
+                lotto1.matchWin(lotto2)
+                lotto1.matched shouldBe 3
+            }
         }
         context("비정상적인 입력이 있는 경우") {
             it("숫자가 부족한 경우") {

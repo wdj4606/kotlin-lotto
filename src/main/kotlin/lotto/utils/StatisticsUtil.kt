@@ -12,6 +12,8 @@ class StatisticsUtil {
             6 to 2000000000
         )
 
+        val TARGET_MATCHED = listOf(3, 4, 5, 6)
+
         fun getCountWin(lottoList: List<Lotto>, matchedCount: Int): Int {
             return lottoList.count { it.matched == matchedCount }
         }
