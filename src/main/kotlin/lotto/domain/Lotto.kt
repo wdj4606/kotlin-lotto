@@ -15,8 +15,8 @@ class Lotto(val numbers: List<Int>) : List<Int> by numbers {
         fun shuffled(): Lotto {
             val numbers = (LOTTO_MIN_NUMBER..LOTTO_MAX_NUMBER)
                 .shuffled()
-                .sorted()
                 .take(LOTTO_NUM_COUNT)
+                .sorted()
             return Lotto(numbers)
         }
     }

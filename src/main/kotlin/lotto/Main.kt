@@ -1,5 +1,6 @@
 package lotto
 
+import lotto.domain.Lotto
 import lotto.view.InputView
 import lotto.view.OutputView
 
@@ -11,4 +12,7 @@ fun main() {
 
     val lottoCount: Int = inputView.money / 1000
     outputView.printLottoCount(lottoCount)
+
+    val lottoList = List(lottoCount) { Lotto.shuffled() }
+    lottoList.forEach { outputView.pintLotto(it) }
 }
