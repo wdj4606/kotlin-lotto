@@ -15,4 +15,6 @@ fun main() {
 
     val lottoList = List(lottoCount) { Lotto.shuffled() }
     lottoList.forEach { outputView.pintLotto(it) }
+
+    val winLotto = inputView.winLotto()
 }
