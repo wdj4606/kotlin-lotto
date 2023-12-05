@@ -41,8 +41,14 @@ class LottoTest : DescribeSpec({
             it("숫자가 부족한 경우") {
                 assertThrows<IllegalArgumentException> { Lotto(setOf(1, 2, 3, 4, 5)) }
             }
-            it("숫자가 적절하지 않은 경우") {
+            it("숫자가 1~45에 해당하지 않은 경우") {
                 assertThrows<IllegalArgumentException> { Lotto(setOf(1, 2, 3, 4, 5, 99)) }
+            }
+            it("숫자가 1~45에 해당하지 않은 경우1") {
+                assertThrows<IllegalArgumentException> { Lotto(setOf(1, 2, 3, 4, 5, 46)) }
+            }
+            it("숫자가 1~45에 해당하지 않은 경우2") {
+                assertThrows<IllegalArgumentException> { Lotto(setOf(0, 1, 2, 3, 4, 5)) }
             }
             it("음수가 포함된 경우") {
                 assertThrows<IllegalArgumentException> { Lotto(setOf(1, 2, 3, 4, 5, -10)) }
