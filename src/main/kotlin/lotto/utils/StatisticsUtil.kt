@@ -5,22 +5,15 @@ import lotto.domain.Lotto
 class StatisticsUtil {
 
     companion object {
-        val PRIZE = mapOf(
-            3 to 5000,
-            4 to 50000,
-            5 to 1500000,
-            6 to 2000000000
-        )
-
-        val TARGET_MATCHED = listOf(3, 4, 5, 6)
-
-        fun getCountWin(lottoList: List<Lotto>, matchedCount: Int): Int {
-            return lottoList.count { it.matched == matchedCount }
+        enum class Prize(val count: Int, val prize: Int) {
+            THREE(3, 5000),
+            FOUR(4, 50000),
+            FIVE(5, 1500000),
+            SIX(6, 2000000000)
         }
 
-        fun getPrize(matchedCount: Int): Int {
-            return PRIZE.get(matchedCount)
-                ?: throw RuntimeException("prize not found")
+        fun getCountWin(lottoList: List<Lotto>, prize: Prize): Int {
+            return lottoList.count { it.matched == prize.count }
         }
     }
 }

@@ -18,11 +18,10 @@ class OutputView {
         println()
 
         var totalPrize = 0
-        StatisticsUtil.TARGET_MATCHED.forEach {
+        StatisticsUtil.Companion.Prize.values().forEach {
             val countWin = StatisticsUtil.getCountWin(lottoList, it)
-            val prize = StatisticsUtil.getPrize(it)
-            println("$it matched ($prize) : $countWin ")
-            totalPrize += countWin * prize
+            println("$it matched (${it.prize}) : $countWin ")
+            totalPrize += countWin * it.prize
         }
         val profit: Double = totalPrize.toDouble() / (lottoList.size * 1000).toDouble()
         println("total prize : $totalPrize, profit : $profit")

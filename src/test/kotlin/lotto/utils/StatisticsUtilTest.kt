@@ -3,8 +3,6 @@ package lotto.utils
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.shouldBe
 import lotto.domain.Lotto
-import org.junit.jupiter.api.assertThrows
-import java.lang.RuntimeException
 
 class StatisticsUtilTest : DescribeSpec({
     describe("상금을 처리하는 클래스를 테스트합니다.") {
@@ -28,21 +26,10 @@ class StatisticsUtilTest : DescribeSpec({
                 for (lotto in lottoList) {
                     lotto.matchWin(winLotto)
                 }
-                StatisticsUtil.getCountWin(lottoList, 3) shouldBe 4
-                StatisticsUtil.getCountWin(lottoList, 4) shouldBe 3
-                StatisticsUtil.getCountWin(lottoList, 5) shouldBe 2
-                StatisticsUtil.getCountWin(lottoList, 6) shouldBe 1
-            }
-            it("상금 제대로 가져오는가") {
-                StatisticsUtil.getPrize(3) shouldBe 5000
-                StatisticsUtil.getPrize(4) shouldBe 50000
-                StatisticsUtil.getPrize(5) shouldBe 1500000
-                StatisticsUtil.getPrize(6) shouldBe 2000000000
-            }
-        }
-        context("실패하는 경우") {
-            it("상금이 없는 갯수") {
-                assertThrows<RuntimeException> { StatisticsUtil.getPrize(2) }
+                StatisticsUtil.getCountWin(lottoList, StatisticsUtil.Companion.Prize.THREE) shouldBe 4
+                StatisticsUtil.getCountWin(lottoList, StatisticsUtil.Companion.Prize.FOUR) shouldBe 3
+                StatisticsUtil.getCountWin(lottoList, StatisticsUtil.Companion.Prize.FIVE) shouldBe 2
+                StatisticsUtil.getCountWin(lottoList, StatisticsUtil.Companion.Prize.SIX) shouldBe 1
             }
         }
     }
