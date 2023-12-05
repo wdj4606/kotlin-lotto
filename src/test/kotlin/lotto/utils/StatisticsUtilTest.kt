@@ -11,20 +11,20 @@ class StatisticsUtilTest : DescribeSpec({
         context("정상 경우") {
             it("등수 제대로 구하는지 확인") {
                 val lottoList = listOf(
-                    Lotto(listOf(1, 2, 3, 4, 5, 6)),
-                    Lotto(listOf(1, 2, 3, 4, 5, 7)),
-                    Lotto(listOf(1, 2, 3, 4, 5, 7)),
-                    Lotto(listOf(1, 2, 3, 4, 7, 8)),
-                    Lotto(listOf(1, 2, 3, 4, 7, 8)),
-                    Lotto(listOf(1, 2, 3, 4, 7, 8)),
-                    Lotto(listOf(1, 2, 3, 7, 8, 9)),
-                    Lotto(listOf(1, 2, 3, 7, 8, 9)),
-                    Lotto(listOf(1, 2, 3, 7, 8, 9)),
-                    Lotto(listOf(1, 2, 3, 7, 8, 9)),
-                    Lotto(listOf(1, 2, 7, 8, 9, 10)),
-                    Lotto(listOf(1, 7, 8, 9, 10, 11))
+                    Lotto(setOf(1, 2, 3, 4, 5, 6)),
+                    Lotto(setOf(1, 2, 3, 4, 5, 7)),
+                    Lotto(setOf(1, 2, 3, 4, 5, 7)),
+                    Lotto(setOf(1, 2, 3, 4, 7, 8)),
+                    Lotto(setOf(1, 2, 3, 4, 7, 8)),
+                    Lotto(setOf(1, 2, 3, 4, 7, 8)),
+                    Lotto(setOf(1, 2, 3, 7, 8, 9)),
+                    Lotto(setOf(1, 2, 3, 7, 8, 9)),
+                    Lotto(setOf(1, 2, 3, 7, 8, 9)),
+                    Lotto(setOf(1, 2, 3, 7, 8, 9)),
+                    Lotto(setOf(1, 2, 7, 8, 9, 10)),
+                    Lotto(setOf(1, 7, 8, 9, 10, 11))
                 )
-                val winLotto = Lotto(listOf(1, 2, 3, 4, 5, 6))
+                val winLotto = Lotto(setOf(1, 2, 3, 4, 5, 6))
                 for (lotto in lottoList) {
                     lotto.matchWin(winLotto)
                 }

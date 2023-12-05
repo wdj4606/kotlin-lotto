@@ -8,7 +8,7 @@ class InputView {
         print("pay for lotto : ")
         money = readln().toInt()
     }
-    fun winLotto(): List<Int> {
+    fun inputWin(): List<Int> {
         print("win lotto : ")
         return readln().split(",").map { StringCalculatorValidator.getValue(it) }
     }
