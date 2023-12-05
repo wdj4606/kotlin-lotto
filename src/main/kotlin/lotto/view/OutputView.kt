@@ -17,13 +17,13 @@ class OutputView {
         println("=== Statistics ===")
         println()
 
-        var totalPrize = 0
-        StatisticsUtil.Companion.Prize.values().forEach {
-            val countWin = StatisticsUtil.getCountWin(lottoList, it)
-            println("$it matched (${it.prize}) : $countWin ")
-            totalPrize += countWin * it.prize
+        val winCount = StatisticsUtil.getCountWin(lottoList)
+        val totalPrize = StatisticsUtil.getTotalProfit(winCount)
+        val profit = totalPrize.toDouble() / (lottoList.size * 1000).toDouble()
+
+        winCount.forEach {
+            println("${it.key.count} matched (${it.key.prize}) : ${it.value} ")
         }
-        val profit: Double = totalPrize.toDouble() / (lottoList.size * 1000).toDouble()
         println("total prize : $totalPrize, profit : $profit")
     }
 }
