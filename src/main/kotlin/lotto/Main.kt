@@ -16,7 +16,8 @@ fun main() {
     val lottoList = List(lottoCount) { Lotto.shuffled() }
     lottoList.forEach { outputView.printLotto(it) }
 
-    val winLotto = Lotto(inputView.inputWin().toList().sorted())
+    val winNumbers = inputView.inputWin()
+    val winLotto = Lotto(*winNumbers.toIntArray())
 
     outputView.printStatistics(lottoList, winLotto)
 }

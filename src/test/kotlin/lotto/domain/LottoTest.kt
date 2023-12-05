@@ -9,7 +9,7 @@ class LottoTest : DescribeSpec({
         context("정상적인 경우") {
             it("숫자 6개가 주어진다.") {
                 val lotto = Lotto(1, 2, 3, 4, 5, 6)
-                lotto.numbers shouldBe listOf(1, 2, 3, 4, 5, 6)
+                lotto.numbers.map { it.num } shouldBe listOf(1, 2, 3, 4, 5, 6)
             }
             it("숫자 6개가 주어진다.") {
                 val lotto = Lotto(1, 2, 3, 4, 5, 6)

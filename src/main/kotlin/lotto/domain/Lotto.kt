@@ -1,31 +1,32 @@
 package lotto.domain
 
-class Lotto(val numbers: List<Int>) : List<Int> by numbers {
+class Lotto(val numbers: List<LottoNum>) : List<LottoNum> by numbers {
 
-    constructor(vararg numbers: Int) : this(numbers.toList().distinct().sorted())
+    constructor(vararg nums: Int) :
+        this(List(nums.size) { LottoNum(nums[it]) }.sortedBy { it.num }.distinct())
 
     init {
         require(numbers.size == LOTTO_NUM_COUNT)
-        require(numbers.all { it in LOTTO_MIN_NUMBER..LOTTO_MAX_NUMBER })
     }
 
     fun matchedCount(winLotto: Lotto): Int {
         return this.count { winLotto.contains(it) }
     }
 
+    fun contains(lottoNum: Int): Boolean {
+        return numbers.contains(LottoNum(lottoNum))
+    }
+
     companion object {
         val LOTTO_NUM_COUNT = 6
-        val LOTTO_MIN_NUMBER = 1
-        val LOTTO_MAX_NUMBER = 45
-
-        val LOTTO_FULL_NUMBERS = (LOTTO_MIN_NUMBER..LOTTO_MAX_NUMBER).toList()
+        val LOTTO_FULL_NUMBERS = (LottoNum.LOTTO_MIN_NUMBER..LottoNum.LOTTO_MAX_NUMBER).toList()
 
         fun shuffled(): Lotto {
             val numbers = LOTTO_FULL_NUMBERS
                 .shuffled()
                 .take(LOTTO_NUM_COUNT)
                 .sorted()
-                .toList()
+                .map { LottoNum(it) }
             return Lotto(numbers)
         }
     }

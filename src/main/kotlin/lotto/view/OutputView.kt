@@ -9,7 +9,7 @@ class OutputView {
     }
 
     fun printLotto(lotto: Lotto) {
-        println("[ ${lotto.joinToString(", ")} ]")
+        println("[ ${lotto.map { it.num }.joinToString(", ")} ]")
     }
 
     fun printStatistics(lottoList: List<Lotto>, winLotto: Lotto) {
