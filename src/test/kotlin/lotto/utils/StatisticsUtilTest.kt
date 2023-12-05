@@ -30,18 +30,16 @@ class StatisticsUtilTest : DescribeSpec({
                 Lotto(1, 7, 8, 9, 10, 11)
             )
             val winLotto = Lotto(1, 2, 3, 4, 5, 6)
-            for (lotto in lottoList) {
-                lotto.matchWin(winLotto)
-            }
+
             it("상금 계산") {
-                val winCount = StatisticsUtil.getCountWin(lottoList)
+                val winCount = StatisticsUtil.getCountWin(lottoList, winLotto)
                 winCount[StatisticsUtil.Prize.THREE] shouldBe 4
                 winCount[StatisticsUtil.Prize.FOUR] shouldBe 3
                 winCount[StatisticsUtil.Prize.FIVE] shouldBe 2
                 winCount[StatisticsUtil.Prize.SIX] shouldBe 1
             }
             it("전체 수익 계산") {
-                val winCount = StatisticsUtil.getCountWin(lottoList)
+                val winCount = StatisticsUtil.getCountWin(lottoList, winLotto)
                 val profit = StatisticsUtil.getTotalProfit(winCount)
                 profit shouldBe 2003170000
             }

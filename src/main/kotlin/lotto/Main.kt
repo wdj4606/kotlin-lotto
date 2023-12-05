@@ -17,9 +17,6 @@ fun main() {
     lottoList.forEach { outputView.printLotto(it) }
 
     val winLotto = Lotto(inputView.inputWin().toList().sorted())
-    for (lotto in lottoList) {
-        lotto.matchWin(winLotto)
-    }
 
-    outputView.printStatistics(lottoList)
+    outputView.printStatistics(lottoList, winLotto)
 }

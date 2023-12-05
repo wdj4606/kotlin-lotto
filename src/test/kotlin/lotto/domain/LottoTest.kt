@@ -33,8 +33,7 @@ class LottoTest : DescribeSpec({
             it("로또를 비교") {
                 val lotto1 = Lotto(1, 2, 3, 4, 5, 6)
                 val lotto2 = Lotto(1, 2, 3, 7, 8, 9)
-                lotto1.matchWin(lotto2)
-                lotto1.matched shouldBe 3
+                lotto1.matchedCount(lotto2) shouldBe 3
             }
         }
         context("비정상적인 입력이 있는 경우") {

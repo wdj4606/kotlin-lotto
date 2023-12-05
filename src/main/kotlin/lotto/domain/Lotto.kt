@@ -1,7 +1,6 @@
 package lotto.domain
 
 class Lotto(val numbers: List<Int>) : List<Int> by numbers {
-    var matched: Int = 0
 
     constructor(vararg numbers: Int) : this(numbers.toList().distinct().sorted())
 
@@ -10,8 +9,8 @@ class Lotto(val numbers: List<Int>) : List<Int> by numbers {
         require(numbers.all { it in LOTTO_MIN_NUMBER..LOTTO_MAX_NUMBER })
     }
 
-    fun matchWin(winLotto: Lotto) {
-        matched = this.count { winLotto.contains(it) }
+    fun matchedCount(winLotto: Lotto): Int {
+        return this.count { winLotto.contains(it) }
     }
 
     companion object {

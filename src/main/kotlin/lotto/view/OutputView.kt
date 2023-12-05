@@ -12,12 +12,12 @@ class OutputView {
         println("[ ${lotto.joinToString(", ")} ]")
     }
 
-    fun printStatistics(lottoList: List<Lotto>) {
+    fun printStatistics(lottoList: List<Lotto>, winLotto: Lotto) {
         println()
         println("=== Statistics ===")
         println()
 
-        val winCount = StatisticsUtil.getCountWin(lottoList)
+        val winCount = StatisticsUtil.getCountWin(lottoList, winLotto)
         val totalPrize = StatisticsUtil.getTotalProfit(winCount)
         val profit = totalPrize.toDouble() / (lottoList.size * 1000).toDouble()
 

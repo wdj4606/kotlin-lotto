@@ -10,10 +10,10 @@ object StatisticsUtil {
         SIX(6, 2000000000)
     }
 
-    fun getCountWin(lottoList: List<Lotto>): Map<Prize, Int> {
+    fun getCountWin(lottoList: List<Lotto>, winLotto: Lotto): Map<Prize, Int> {
         val result = mutableMapOf<Prize, Int>()
         Prize.values().forEach {
-            result[it] = lottoList.count { lotto -> lotto.matched == it.count }
+            result[it] = lottoList.count { lotto -> lotto.matchedCount(winLotto) == it.count }
         }
         return result
     }
