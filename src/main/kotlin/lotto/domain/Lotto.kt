@@ -1,10 +1,9 @@
 package lotto.domain
 
-class Lotto(
-    input: Set<Int>,
-    val numbers: List<Int> = input.toList().sorted()
-) : List<Int> by numbers {
+class Lotto(val numbers: List<Int>) : List<Int> by numbers {
     var matched: Int = 0
+
+    constructor(vararg numbers: Int) : this(numbers.toList().distinct().sorted())
 
     init {
         require(numbers.size == LOTTO_NUM_COUNT)
@@ -26,7 +25,8 @@ class Lotto(
             val numbers = LOTTO_FULL_NUMBERS
                 .shuffled()
                 .take(LOTTO_NUM_COUNT)
-                .toSet()
+                .sorted()
+                .toList()
             return Lotto(numbers)
         }
     }

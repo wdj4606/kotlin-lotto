@@ -16,20 +16,20 @@ class StatisticsUtilTest : DescribeSpec({
         }
         context("통계 관련 내용") {
             val lottoList = listOf(
-                Lotto(setOf(1, 2, 3, 4, 5, 6)),
-                Lotto(setOf(1, 2, 3, 4, 5, 7)),
-                Lotto(setOf(1, 2, 3, 4, 5, 7)),
-                Lotto(setOf(1, 2, 3, 4, 7, 8)),
-                Lotto(setOf(1, 2, 3, 4, 7, 8)),
-                Lotto(setOf(1, 2, 3, 4, 7, 8)),
-                Lotto(setOf(1, 2, 3, 7, 8, 9)),
-                Lotto(setOf(1, 2, 3, 7, 8, 9)),
-                Lotto(setOf(1, 2, 3, 7, 8, 9)),
-                Lotto(setOf(1, 2, 3, 7, 8, 9)),
-                Lotto(setOf(1, 2, 7, 8, 9, 10)),
-                Lotto(setOf(1, 7, 8, 9, 10, 11))
+                Lotto(1, 2, 3, 4, 5, 6),
+                Lotto(1, 2, 3, 4, 5, 7),
+                Lotto(1, 2, 3, 4, 5, 7),
+                Lotto(1, 2, 3, 4, 7, 8),
+                Lotto(1, 2, 3, 4, 7, 8),
+                Lotto(1, 2, 3, 4, 7, 8),
+                Lotto(1, 2, 3, 7, 8, 9),
+                Lotto(1, 2, 3, 7, 8, 9),
+                Lotto(1, 2, 3, 7, 8, 9),
+                Lotto(1, 2, 3, 7, 8, 9),
+                Lotto(1, 2, 7, 8, 9, 10),
+                Lotto(1, 7, 8, 9, 10, 11)
             )
-            val winLotto = Lotto(setOf(1, 2, 3, 4, 5, 6))
+            val winLotto = Lotto(1, 2, 3, 4, 5, 6)
             for (lotto in lottoList) {
                 lotto.matchWin(winLotto)
             }
