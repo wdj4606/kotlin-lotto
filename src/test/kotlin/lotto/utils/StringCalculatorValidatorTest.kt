@@ -3,7 +3,6 @@ package lotto.utils
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.shouldBe
-import io.kotest.matchers.string.shouldStartWith
 
 class StringCalculatorValidatorTest : DescribeSpec({
     describe("계산기의 값 판단 유효성 테스트") {
@@ -18,13 +17,13 @@ class StringCalculatorValidatorTest : DescribeSpec({
                 val exception = shouldThrow<RuntimeException> {
                     StringCalculatorValidator.getValue("hello")
                 }
-                exception.message shouldStartWith("input is not number")
+                exception.message shouldBe "input is not number"
             }
             it("음수가 주어지면") {
                 val exception = shouldThrow<RuntimeException> {
                     StringCalculatorValidator.getValue("-1")
                 }
-                exception.message shouldStartWith("input is negative")
+                exception.message shouldBe "input is negative"
             }
         }
     }
