@@ -10,13 +10,18 @@ fun main() {
     val inputView = InputView()
     val outputView = OutputView()
 
-    inputView.input()
+    inputView.inputMoney()
+    inputView.inputManualCount()
 
     val lottoCount: Int = inputView.money / 1000
-    outputView.printLottoCount(lottoCount)
+    require(lottoCount >= inputView.manualCount) { "manual lotto count too big" }
+    val autoCount = lottoCount - inputView.manualCount
+    val manualLottoList = inputView.inputManual()
 
-    val lottoList = List(lottoCount) { LottoMachine.auto() }
-    lottoList.forEach { outputView.printLotto(it) }
+    outputView.printLottoCount(autoCount, inputView.manualCount)
+
+    val lottoList = List(autoCount) { LottoMachine.auto() }
+    outputView.printLotto(lottoList)
 
     val winNumbers = inputView.inputWin()
     val bonus = LottoNum(inputView.inputBonus())

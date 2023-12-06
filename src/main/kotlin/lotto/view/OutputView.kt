@@ -5,12 +5,15 @@ import lotto.domain.LottoNum
 import lotto.utils.StatisticsUtil
 
 class OutputView {
-    fun printLottoCount(lottoCount: Int) {
-        println("bought lotto $lottoCount.")
+    fun printLottoCount(autoCount: Int, manualCount: Int) {
+        println("bought auto lotto $autoCount, manual lotto $manualCount.")
     }
 
-    fun printLotto(lotto: Lotto) {
-        println("[ ${lotto.map { it.num }.joinToString(", ")} ]")
+    fun printLotto(lottoList: List<Lotto>) {
+        for (lotto in lottoList) {
+            println("[ ${lotto.map { it.num }.joinToString(", ")} ]")
+        }
+        println()
     }
 
     fun printStatistics(lottoList: List<Lotto>, winLotto: Lotto, bonus: LottoNum) {
