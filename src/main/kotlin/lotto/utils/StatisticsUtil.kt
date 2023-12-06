@@ -9,23 +9,23 @@ object StatisticsUtil {
         val isMatched: (Lotto, Lotto, Int) -> Boolean
     ) {
         THREE(
-            "3 matched", 5000,
+            "3 matched", 5_000,
             { lotto, win, _ -> lotto.matchedCount(win) == 3 }
         ),
         FOUR(
-            "4 matched", 50000,
+            "4 matched", 50_000,
             { lotto, win, _ -> lotto.matchedCount(win) == 4 }
         ),
         FIVE(
-            "5 matched", 1500000,
+            "5 matched", 1_500_000,
             { lotto, win, bonus -> lotto.matchedCount(win) == 5 && !lotto.contains(bonus) }
         ),
         FIVE_BONUS(
-            "5 and bonus matched", 30000000,
+            "5 and bonus matched", 30_000_000,
             { lotto, win, bonus -> lotto.matchedCount(win) == 5 && lotto.contains(bonus) }
         ),
         SIX(
-            "6 matched", 2000000000,
+            "6 matched", 2_000_000_000,
             { lotto, win, _ -> lotto.matchedCount(win) == 6 }
         ),
     }
