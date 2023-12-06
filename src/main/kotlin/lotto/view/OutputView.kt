@@ -17,12 +17,12 @@ class OutputView {
         println("=== Statistics ===")
         println()
 
-        val winCount = StatisticsUtil.getCountWin(lottoList, winLotto)
+        val winCount = StatisticsUtil.getCountWin(lottoList, winLotto, 0)
         val totalPrize = StatisticsUtil.getTotalProfit(winCount)
         val profit = totalPrize.toDouble() / (lottoList.size * 1000).toDouble()
 
         winCount.forEach {
-            println("${it.key.count} matched (${it.key.prize}) : ${it.value} ")
+            println("${it.key.printName} (${it.key.prize}) : ${it.value} ")
         }
         println("total prize : $totalPrize, profit : $profit")
     }
