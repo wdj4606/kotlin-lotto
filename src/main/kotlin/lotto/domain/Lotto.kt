@@ -2,12 +2,12 @@ package lotto.domain
 
 class Lotto(val numbers: List<LottoNum>) : List<LottoNum> by numbers {
 
-    constructor(vararg nums: Int) :
-        this(List(nums.size) { LottoNum(nums[it]) }.sortedBy { it.num }.distinct())
-
     init {
         require(numbers.size == LOTTO_NUM_COUNT)
     }
+
+    constructor(vararg nums: Int) :
+        this(List(nums.size) { LottoNum(nums[it]) }.sortedBy { it.num }.distinct())
 
     fun matchedCount(winLotto: Lotto): Int {
         return this.count { winLotto.contains(it) }
