@@ -12,4 +12,9 @@ class InputView {
         print("win lotto : ")
         return readln().split(",").map { StringCalculatorValidator.getValue(it) }
     }
+
+    fun inputBonus(): Int {
+        print("bonus lotto : ")
+        return readln().toInt()
+    }
 }

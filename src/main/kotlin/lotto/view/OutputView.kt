@@ -12,17 +12,17 @@ class OutputView {
         println("[ ${lotto.map { it.num }.joinToString(", ")} ]")
     }
 
-    fun printStatistics(lottoList: List<Lotto>, winLotto: Lotto) {
+    fun printStatistics(lottoList: List<Lotto>, winLotto: Lotto, bonus: Int) {
         println()
         println("=== Statistics ===")
         println()
 
-        val winCount = StatisticsUtil.getCountWin(lottoList, winLotto)
+        val winCount = StatisticsUtil.getCountWin(lottoList, winLotto, bonus)
         val totalPrize = StatisticsUtil.getTotalProfit(winCount)
         val profit = totalPrize.toDouble() / (lottoList.size * 1000).toDouble()
 
         winCount.forEach {
-            println("${it.key.count} matched (${it.key.prize}) : ${it.value} ")
+            println("${it.key.printName} (${it.key.prize}) : ${it.value} ")
         }
         println("total prize : $totalPrize, profit : $profit")
     }
