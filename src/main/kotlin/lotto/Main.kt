@@ -17,15 +17,17 @@ fun main() {
     require(lottoCount >= inputView.manualCount) { "manual lotto count too big" }
     val autoCount = lottoCount - inputView.manualCount
     val manualLottoList = inputView.inputManual()
+        .map { numList -> Lotto(numList.map { num -> LottoNum(num) }) }
 
     outputView.printLottoCount(autoCount, inputView.manualCount)
 
-    val lottoList = List(autoCount) { LottoMachine.auto() }
-    outputView.printLotto(lottoList)
+    val autoLottoList = List(autoCount) { LottoMachine.auto() }
+    outputView.printLotto(autoLottoList)
 
     val winNumbers = inputView.inputWin()
     val bonus = LottoNum(inputView.inputBonus())
     val winLotto = Lotto(*winNumbers.toIntArray())
+    val totalLottoList = manualLottoList + autoLottoList
 
-    outputView.printStatistics(lottoList, winLotto, bonus)
+    outputView.printStatistics(totalLottoList, winLotto, bonus)
 }
