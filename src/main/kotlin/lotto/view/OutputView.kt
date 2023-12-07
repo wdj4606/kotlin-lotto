@@ -22,9 +22,15 @@ class OutputView {
         val totalPrize = StatisticsUtil.getTotalProfit(winCount)
         val profit = totalPrize.toDouble() / (lottoList.size * 1000).toDouble()
 
-        winCount.forEach {
-            println("${it.key.printName} (${it.key.prize}) : ${it.value} ")
+        val printPrizeResult = { prize: StatisticsUtil.Prize, name: String ->
+            println("$name (${prize.prize}) : ${winCount[prize]} ")
         }
+        printPrizeResult(StatisticsUtil.Prize.THREE, "3 matched")
+        printPrizeResult(StatisticsUtil.Prize.FOUR, "4 matched")
+        printPrizeResult(StatisticsUtil.Prize.FIVE, "5 matched")
+        printPrizeResult(StatisticsUtil.Prize.FIVE_BONUS, "5 matched and bonus")
+        printPrizeResult(StatisticsUtil.Prize.SIX, "6 matched")
+
         println("total prize : $totalPrize, profit : $profit")
     }
 }
