@@ -3,6 +3,7 @@ package lotto.utils
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.shouldBe
 import lotto.domain.Lotto
+import lotto.domain.LottoNum
 
 class StatisticsUtilTest : DescribeSpec({
     describe("상금을 처리 통계하는 클래스를 테스트합니다.") {
@@ -11,31 +12,31 @@ class StatisticsUtilTest : DescribeSpec({
             it("3개 맞을 경우") {
                 StatisticsUtil.Prize.THREE.isMatched(
                     lotto,
-                    Lotto(1, 2, 3, 10, 11, 12), 13
+                    Lotto(1, 2, 3, 10, 11, 12), LottoNum(13)
                 ) shouldBe true
             }
             it("4개 맞을 경우") {
                 StatisticsUtil.Prize.FOUR.isMatched(
                     lotto,
-                    Lotto(1, 2, 3, 4, 11, 12), 13
+                    Lotto(1, 2, 3, 4, 11, 12), LottoNum(13)
                 ) shouldBe true
             }
             it("5개 맞을 경우") {
                 StatisticsUtil.Prize.FIVE.isMatched(
                     lotto,
-                    Lotto(1, 2, 3, 4, 5, 12), 13
+                    Lotto(1, 2, 3, 4, 5, 12), LottoNum(13)
                 ) shouldBe true
             }
             it("5개와 보너스 맞을 경우") {
                 StatisticsUtil.Prize.FIVE_BONUS.isMatched(
                     lotto,
-                    Lotto(1, 2, 3, 4, 5, 12), 6
+                    Lotto(1, 2, 3, 4, 5, 12), LottoNum(6)
                 ) shouldBe true
             }
             it("6개 맞을 경우") {
                 StatisticsUtil.Prize.SIX.isMatched(
                     lotto,
-                    Lotto(1, 2, 3, 4, 5, 6), 13
+                    Lotto(1, 2, 3, 4, 5, 6), LottoNum(13)
                 ) shouldBe true
             }
         }
@@ -64,7 +65,7 @@ class StatisticsUtilTest : DescribeSpec({
             val winLotto = Lotto(1, 2, 3, 4, 5, 6)
 
             it("상금 계산") {
-                val winCount = StatisticsUtil.getCountWin(lottoList, winLotto, 45)
+                val winCount = StatisticsUtil.getCountWin(lottoList, winLotto, LottoNum(45))
                 winCount[StatisticsUtil.Prize.THREE] shouldBe 5
                 winCount[StatisticsUtil.Prize.FOUR] shouldBe 4
                 winCount[StatisticsUtil.Prize.FIVE] shouldBe 3
@@ -72,7 +73,7 @@ class StatisticsUtilTest : DescribeSpec({
                 winCount[StatisticsUtil.Prize.SIX] shouldBe 1
             }
             it("전체 수익 계산") {
-                val winCount = StatisticsUtil.getCountWin(lottoList, winLotto, 45)
+                val winCount = StatisticsUtil.getCountWin(lottoList, winLotto, LottoNum(45))
                 val profit = StatisticsUtil.getTotalProfit(winCount)
                 val expected = (
                     5 * StatisticsUtil.Prize.THREE.prize +

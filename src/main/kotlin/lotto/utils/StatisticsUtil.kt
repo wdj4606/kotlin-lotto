@@ -1,12 +1,13 @@
 package lotto.utils
 
 import lotto.domain.Lotto
+import lotto.domain.LottoNum
 
 object StatisticsUtil {
     enum class Prize(
         val printName: String,
         val prize: Int,
-        val isMatched: (Lotto, Lotto, Int) -> Boolean
+        val isMatched: (Lotto, Lotto, LottoNum) -> Boolean
     ) {
         THREE(
             "3 matched", 5_000,
@@ -30,7 +31,7 @@ object StatisticsUtil {
         ),
     }
 
-    fun getCountWin(lottoList: List<Lotto>, winLotto: Lotto, bonus: Int): Map<Prize, Int> {
+    fun getCountWin(lottoList: List<Lotto>, winLotto: Lotto, bonus: LottoNum): Map<Prize, Int> {
         val result = mutableMapOf<Prize, Int>()
         Prize.values().forEach {
             result[it] = lottoList.count { lotto -> it.isMatched(lotto, winLotto, bonus) }

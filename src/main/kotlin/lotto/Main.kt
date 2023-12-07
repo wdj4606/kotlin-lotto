@@ -1,6 +1,7 @@
 package lotto
 
 import lotto.domain.Lotto
+import lotto.domain.LottoNum
 import lotto.view.InputView
 import lotto.view.OutputView
 
@@ -17,7 +18,7 @@ fun main() {
     lottoList.forEach { outputView.printLotto(it) }
 
     val winNumbers = inputView.inputWin()
-    val bonus = inputView.inputBonus()
+    val bonus = LottoNum(inputView.inputBonus())
     val winLotto = Lotto(*winNumbers.toIntArray())
 
     outputView.printStatistics(lottoList, winLotto, bonus)

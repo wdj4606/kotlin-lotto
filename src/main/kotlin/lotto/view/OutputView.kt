@@ -1,6 +1,7 @@
 package lotto.view
 
 import lotto.domain.Lotto
+import lotto.domain.LottoNum
 import lotto.utils.StatisticsUtil
 
 class OutputView {
@@ -12,7 +13,7 @@ class OutputView {
         println("[ ${lotto.map { it.num }.joinToString(", ")} ]")
     }
 
-    fun printStatistics(lottoList: List<Lotto>, winLotto: Lotto, bonus: Int) {
+    fun printStatistics(lottoList: List<Lotto>, winLotto: Lotto, bonus: LottoNum) {
         println()
         println("=== Statistics ===")
         println()
