@@ -1,5 +1,8 @@
 package lotto.view
 
+import lotto.domain.Lotto
+import lotto.domain.LottoNum
+import lotto.domain.LottoWin
 import lotto.utils.StringCalculatorValidator
 
 class InputView {
@@ -24,9 +27,14 @@ class InputView {
         println()
         return manualLottoList
     }
-    fun inputWin(): List<Int> {
+    fun inputWin(): LottoWin {
         print("win lotto : ")
-        return readln().split(",").map { StringCalculatorValidator.getValue(it) }
+        val lottoNumbers = readln().split(",").map { StringCalculatorValidator.getValue(it) }
+
+        print("bonus lotto : ")
+        val lottoBonus = readln().toInt()
+
+        return LottoWin(Lotto(*lottoNumbers.toIntArray()), LottoNum(lottoBonus))
     }
 
     fun inputBonus(): Int {

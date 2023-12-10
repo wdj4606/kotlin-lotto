@@ -1,39 +1,39 @@
 package lotto.utils
 
 import lotto.domain.Lotto
-import lotto.domain.LottoNum
+import lotto.domain.LottoWin
 
 object StatisticsUtil {
     enum class Prize(
         val prize: Int,
-        val isMatched: (Lotto, Lotto, LottoNum) -> Boolean
+        val isMatched: (Lotto, LottoWin) -> Boolean
     ) {
         THREE(
             5_000,
-            { lotto, win, _ -> lotto.matchedCount(win) == 3 }
+            { lotto, win -> lotto.matchedCount(win.lotto) == 3 }
         ),
         FOUR(
             50_000,
-            { lotto, win, _ -> lotto.matchedCount(win) == 4 }
+            { lotto, win -> lotto.matchedCount(win.lotto) == 4 }
         ),
         FIVE(
             1_500_000,
-            { lotto, win, bonus -> lotto.matchedCount(win) == 5 && !lotto.contains(bonus) }
+            { lotto, win -> lotto.matchedCount(win.lotto) == 5 && !lotto.contains(win.bonus) }
         ),
         FIVE_BONUS(
             30_000_000,
-            { lotto, win, bonus -> lotto.matchedCount(win) == 5 && lotto.contains(bonus) }
+            { lotto, win -> lotto.matchedCount(win.lotto) == 5 && lotto.contains(win.bonus) }
         ),
         SIX(
             2_000_000_000,
-            { lotto, win, _ -> lotto.matchedCount(win) == 6 }
+            { lotto, win -> lotto.matchedCount(win.lotto) == 6 }
         ),
     }
 
-    fun getCountWin(lottoList: List<Lotto>, winLotto: Lotto, bonus: LottoNum): Map<Prize, Int> {
+    fun getCountWin(lottoList: List<Lotto>, winLotto: LottoWin): Map<Prize, Int> {
         val result = mutableMapOf<Prize, Int>()
         Prize.values().forEach {
-            result[it] = lottoList.count { lotto -> it.isMatched(lotto, winLotto, bonus) }
+            result[it] = lottoList.count { lotto -> it.isMatched(lotto, winLotto) }
         }
         return result
     }

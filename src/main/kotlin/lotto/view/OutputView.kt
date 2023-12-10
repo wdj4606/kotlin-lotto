@@ -1,7 +1,7 @@
 package lotto.view
 
 import lotto.domain.Lotto
-import lotto.domain.LottoNum
+import lotto.domain.LottoWin
 import lotto.utils.StatisticsUtil
 
 class OutputView {
@@ -16,12 +16,12 @@ class OutputView {
         println()
     }
 
-    fun printStatistics(lottoList: List<Lotto>, winLotto: Lotto, bonus: LottoNum) {
+    fun printStatistics(lottoList: List<Lotto>, winLotto: LottoWin) {
         println()
         println("=== Statistics ===")
         println()
 
-        val winCount = StatisticsUtil.getCountWin(lottoList, winLotto, bonus)
+        val winCount = StatisticsUtil.getCountWin(lottoList, winLotto)
         val totalPrize = StatisticsUtil.getTotalProfit(winCount)
         val profit = totalPrize.toDouble() / (lottoList.size * 1000).toDouble()
 

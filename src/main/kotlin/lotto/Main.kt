@@ -24,10 +24,8 @@ fun main() {
     val autoLottoList = List(autoCount) { LottoMachine.auto() }
     outputView.printLotto(autoLottoList)
 
-    val winNumbers = inputView.inputWin()
-    val bonus = LottoNum(inputView.inputBonus())
-    val winLotto = Lotto(*winNumbers.toIntArray())
+    val winLotto = inputView.inputWin()
     val totalLottoList = manualLottoList + autoLottoList
 
-    outputView.printStatistics(totalLottoList, winLotto, bonus)
+    outputView.printStatistics(totalLottoList, winLotto)
 }
