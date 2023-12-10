@@ -19,15 +19,5 @@ class Lotto(val numbers: List<LottoNum>) : List<LottoNum> by numbers {
 
     companion object {
         val LOTTO_NUM_COUNT = 6
-        val LOTTO_FULL_NUMBERS = (LottoNum.LOTTO_MIN_NUMBER..LottoNum.LOTTO_MAX_NUMBER).toList()
-
-        fun shuffled(): Lotto {
-            val numbers = LOTTO_FULL_NUMBERS
-                .shuffled()
-                .take(LOTTO_NUM_COUNT)
-                .sorted()
-                .map { LottoNum(it) }
-            return Lotto(numbers)
-        }
     }
 }

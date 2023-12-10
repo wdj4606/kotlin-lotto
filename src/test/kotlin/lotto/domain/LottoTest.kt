@@ -2,6 +2,7 @@ package lotto.domain
 
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.shouldBe
+import lotto.utils.LottoMachine
 import org.junit.jupiter.api.assertThrows
 
 class LottoTest : DescribeSpec({
@@ -22,7 +23,7 @@ class LottoTest : DescribeSpec({
                 lotto.contains(7) shouldBe false
             }
             it("랜덤 생성한다 및 정렬되어있다.") {
-                val lotto = Lotto.shuffled()
+                val lotto = LottoMachine.auto()
                 lotto.size shouldBe 6
                 (lotto[0] < lotto[1]) shouldBe true
                 (lotto[1] < lotto[2]) shouldBe true

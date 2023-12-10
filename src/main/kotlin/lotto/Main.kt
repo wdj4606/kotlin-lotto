@@ -1,6 +1,6 @@
 package lotto
 
-import lotto.domain.Lotto
+import lotto.utils.LottoMachine
 import lotto.view.InputView
 import lotto.view.OutputView
 
@@ -8,17 +8,21 @@ fun main() {
     val inputView = InputView()
     val outputView = OutputView()
 
-    inputView.input()
+    inputView.inputMoney()
+    inputView.inputManualCount()
 
     val lottoCount: Int = inputView.money / 1000
-    outputView.printLottoCount(lottoCount)
+    require(lottoCount >= inputView.manualCount) { "manual lotto count too big" }
+    val autoCount = lottoCount - inputView.manualCount
+    val manualLottoList = inputView.inputManual()
 
-    val lottoList = List(lottoCount) { Lotto.shuffled() }
-    lottoList.forEach { outputView.printLotto(it) }
+    outputView.printLottoCount(autoCount, inputView.manualCount)
 
-    val winNumbers = inputView.inputWin()
-    val bonus = inputView.inputBonus()
-    val winLotto = Lotto(*winNumbers.toIntArray())
+    val autoLottoList = List(autoCount) { LottoMachine.auto() }
+    outputView.printLotto(autoLottoList)
 
-    outputView.printStatistics(lottoList, winLotto, bonus)
+    val winLotto = inputView.inputWin()
+    val totalLottoList = manualLottoList + autoLottoList
+
+    outputView.printStatistics(totalLottoList, winLotto)
 }

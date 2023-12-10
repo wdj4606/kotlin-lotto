@@ -1,20 +1,40 @@
 package lotto.view
 
+import lotto.domain.Lotto
+import lotto.domain.LottoNum
+import lotto.domain.LottoWin
 import lotto.utils.StringCalculatorValidator
 
 class InputView {
     var money: Int = 0
-    fun input() {
+    var manualCount: Int = 0
+    fun inputMoney() {
         print("pay for lotto : ")
         money = readln().toInt()
+        println()
     }
-    fun inputWin(): List<Int> {
-        print("win lotto : ")
-        return readln().split(",").map { StringCalculatorValidator.getValue(it) }
+    fun inputManualCount() {
+        print("manual lotto count : ")
+        manualCount = readln().toInt()
+        println()
+    }
+    fun inputManual(): List<Lotto> {
+        val manualLottoList = mutableListOf<List<Int>>()
+        println("manual lotto : ")
+        repeat(manualCount) {
+            manualLottoList.add(readln().split(",").map { StringCalculatorValidator.getValue(it) })
+        }
+        println()
+        return manualLottoList.map { Lotto(*it.toIntArray()) }
     }
 
-    fun inputBonus(): Int {
+    fun inputWin(): LottoWin {
+        print("win lotto : ")
+        val lottoNumbers = readln().split(",").map { StringCalculatorValidator.getValue(it) }
+
         print("bonus lotto : ")
-        return readln().toInt()
+        val lottoBonus = readln().toInt()
+
+        return LottoWin(Lotto(*lottoNumbers.toIntArray()), LottoNum(lottoBonus))
     }
 }
