@@ -18,15 +18,16 @@ class InputView {
         manualCount = readln().toInt()
         println()
     }
-    fun inputManual(): List<List<Int>> {
+    fun inputManual(): List<Lotto> {
         val manualLottoList = mutableListOf<List<Int>>()
         println("manual lotto : ")
         repeat(manualCount) {
             manualLottoList.add(readln().split(",").map { StringCalculatorValidator.getValue(it) })
         }
         println()
-        return manualLottoList
+        return manualLottoList.map { Lotto(*it.toIntArray()) }
     }
+
     fun inputWin(): LottoWin {
         print("win lotto : ")
         val lottoNumbers = readln().split(",").map { StringCalculatorValidator.getValue(it) }
@@ -35,10 +36,5 @@ class InputView {
         val lottoBonus = readln().toInt()
 
         return LottoWin(Lotto(*lottoNumbers.toIntArray()), LottoNum(lottoBonus))
-    }
-
-    fun inputBonus(): Int {
-        print("bonus lotto : ")
-        return readln().toInt()
     }
 }
