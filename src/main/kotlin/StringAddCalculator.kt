@@ -11,7 +11,21 @@ class StringAddCalculator {
             return trySingleInt
         }
 
-        return 10
+        val splitStrings = parser.splitByDelimiter(text)
+
+        val splitNumbers: MutableList<Int> = mutableListOf()
+        for (splitString in splitStrings) {
+            val splitInt = parser.convertSingleInteger(splitString)
+            require(splitInt != null) { MSG_EXCEPTION_FORMULA_ERROR }
+            splitNumbers.add(splitInt)
+        }
+
+        var sum = 0
+        for (splitNumber in splitNumbers) {
+            sum += splitNumber
+        }
+
+        return sum
 
 //        if (isSingleInteger(text)) {
 //            return checkPostiveIntegerAndReturn(text)
@@ -22,18 +36,8 @@ class StringAddCalculator {
 //        if (resultPair.first != null && resultPair.second != null) {
 //            finalText = resultPair.second!!
 //        }
-//        return splitAndAdd(finalText, resultPair.first)
     }
 
-//    private fun isSingleInteger(text: String): Boolean {
-//        try {
-//            text.toInt()
-//            return true
-//        } catch (e: NumberFormatException) {
-//            return false
-//        }
-//    }
-//
 //    private fun checkPostiveIntegerAndReturn(text: String): Int {
 //        val positive = text.toInt()
 //        check(positive >= 0) { throw NumberFormatException(MSG_EXCEPTION_NEGATIVE) }
@@ -65,8 +69,8 @@ class StringAddCalculator {
 //        return sum
 //    }
 //
-//    companion object {
+    companion object {
 //        const val MSG_EXCEPTION_NEGATIVE = "음수는 허용되지 않습니다."
-//        const val MSG_EXCEPTION_FORMULA_ERROR = "수식이 잘못되었습니다."
-//    }
+        const val MSG_EXCEPTION_FORMULA_ERROR = "수식이 잘못되었습니다."
+    }
 }
