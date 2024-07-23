@@ -3,7 +3,7 @@ object StringValidator {
     const val MSG_EXCEPTION_FORMULA_ERROR = "수식이 잘못되었습니다."
 
     fun isNullOrEmptyOrBlank(text: String?): Boolean {
-        return text.isNullOrEmpty() || text.isBlank()
+        return text.isNullOrEmpty()
     }
 
     fun convertSingleInteger(text: String): Int? {
