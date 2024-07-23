@@ -1,13 +1,5 @@
-class FormulaParser {
+class StringSplitter {
     private val delimiterManager: DelimiterManager = DelimiterManager()
-
-    fun convertSingleInteger(text: String): Int? {
-        return try {
-            text.toInt()
-        } catch (e: NumberFormatException) {
-            null
-        }
-    }
 
     fun splitByDelimiter(text: String): List<String> {
         val restString = delimiterManager.extractDelimiter(text)

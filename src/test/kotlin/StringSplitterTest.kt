@@ -4,19 +4,12 @@ import org.junit.jupiter.params.provider.ValueSource
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 
-class FormulaParserTest {
-    private lateinit var parser: FormulaParser
+class StringSplitterText {
+    private lateinit var parser: StringSplitter
 
     @BeforeEach
     fun setUp() {
-        parser = FormulaParser();
-    }
-
-    @DisplayName(value = "숫자 하나를 문자열로 입력할 경우 해당 숫자를 반환한다.")
-    @ParameterizedTest
-    @ValueSource(strings = ["1"])
-    fun oneNumber(text: String) {
-        assertThat(parser.convertSingleInteger(text)).isSameAs(Integer.parseInt(text));
+        parser = StringSplitter();
     }
 
     @DisplayName(value = "숫자 두개를 쉼표(,) 구분자로 입력할 경우 두 숫자의 합을 반환한다.")
