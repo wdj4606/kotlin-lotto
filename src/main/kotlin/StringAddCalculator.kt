@@ -1,9 +1,15 @@
 class StringAddCalculator {
-    val validator: FormulaValidator = FormulaValidator()
+    private val validator: FormulaValidator = FormulaValidator()
+    private val parser: FormulaParser = FormulaParser()
 
     fun add(text: String?): Int {
         if (validator.isNullOrEmptyOrBlank(text))
             return 0
+
+        val trySingleInt = parser.convertSingleInteger(text!!)
+        trySingleInt?.let {
+            return trySingleInt
+        }
 
         return 10
 
