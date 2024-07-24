@@ -9,7 +9,6 @@ class FakeReverseGenerator : GeneratorInterface {
     private var value = 45
     override fun generate(): Int {
         val returnVal = value
-        println(returnVal)
         value = if (value == 0) { 0 } else { value - 1}
         return returnVal
     }
