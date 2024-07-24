@@ -26,4 +26,14 @@ class LottoTicketTest {
             assertThat(number in 1..45).isTrue()
         }
     }
+
+    @DisplayName(value = "로또 티켓의 숫자 List는 오름차순으로 정렬되어 있다.")
+    @Test
+    fun lottoNumberSortedAscend() {
+        var nPrev = 0
+        for (number in lottoTicket.numbers) {
+            assertThat(number).isGreaterThanOrEqualTo(nPrev)
+            nPrev = number
+        }
+    }
 }
