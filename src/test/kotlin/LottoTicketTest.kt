@@ -1,4 +1,3 @@
-import lotto.LottoNumberGenerator
 import lotto.LottoTicket
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
@@ -10,7 +9,7 @@ class LottoTicketTest {
 
     @BeforeEach
     fun setUp() {
-        lottoTicket = LottoTicket();
+        lottoTicket = LottoTicket(FakeReverseGenerator())
     }
 
     @DisplayName(value = "로또 티켓은 6개의 숫자를 List로 가진다.")
