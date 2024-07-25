@@ -1,16 +1,9 @@
 package Calculator
 
-fun main() {
-    val calculator = StringAddCalculator()
-    println(calculator.add("//k\n1,2:3k1"))
-    println(calculator.add("1,2:3"))
-    println(calculator.add("a"))
-}
-
-class StringAddCalculator {
-    private val delimiterManager = DelimiterManager()
-    private val tokenValidator = TokenValidator()
-
+class StringAddCalculator
+    (private val delimiterManager: DelimiterManager = DelimiterManager(),
+     private val tokenValidator: TokenValidator = TokenValidator())
+{
     fun add(text: String?): Int {
         if (text.isNullOrBlank()) return 0
 
