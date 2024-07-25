@@ -26,4 +26,13 @@ class LottoGameTest {
             assertTrue(matchCount in 0..6)
         }
     }
+
+    @Test
+    fun `당첨금 계산이 맞는지 확인`() {
+
+        val matchResults = listOf(3, 4, 5, 6, 0)
+        val reward = LottoGame().getReward(matchResults)
+
+        assertEquals(5000 + 50000 + 1500000 + 2000000000, reward)
+    }
 }

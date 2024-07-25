@@ -10,6 +10,16 @@ class LottoGame(private val money: Int = DEFAULT_MONEY) {
     fun match(lottos: List<Lotto>, winningNumber: List<Int>): List<Int> {
         return lottos.map { it.match(winningNumber) }
     }
+
+    fun getReward(result: List<Int>): Int {
+        val rewardList = listOf(
+            NO_REWARD, NO_REWARD, NO_REWARD,
+            THREE_MATCH_REWARD,
+            FOUR_MATCH_REWARD,
+            FIVE_MATCH_REWARD,
+            SIX_MATCH_REWARD)
+        return result.map { rewardList[it] }.sum()
+    }
     companion object {
         private const val DEFAULT_MONEY = 0
         private const val NO_REWARD = 0
