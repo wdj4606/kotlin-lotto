@@ -1,6 +1,10 @@
 package Lotto.domain
 
 class LottoGame(private val money: Int = DEFAULT_MONEY) {
+    fun buyLotto(): List<Lotto> {
+        val lottoCount = money / Lotto.LOTTO_PRICE
+        return (1..lottoCount).map { Lotto() }
+    }
     companion object {
         private const val DEFAULT_MONEY = 0
         private const val NO_REWARD = 0
