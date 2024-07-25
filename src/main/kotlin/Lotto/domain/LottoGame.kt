@@ -20,6 +20,13 @@ class LottoGame(private val money: Int = DEFAULT_MONEY) {
             SIX_MATCH_REWARD)
         return result.map { rewardList[it] }.sum()
     }
+
+    fun calculateRate(reward: Int): Double {
+        return (reward.toDouble() / money * 100).let {
+            String.format("%.2f", it).toDouble()
+        }
+    }
+
     companion object {
         private const val DEFAULT_MONEY = 0
         private const val NO_REWARD = 0

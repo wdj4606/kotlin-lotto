@@ -35,4 +35,12 @@ class LottoGameTest {
 
         assertEquals(5000 + 50000 + 1500000 + 2000000000, reward)
     }
+
+    @Test
+    fun `수익률 계산 테스트`() {
+
+        val rate = LottoGame(5000).calculateRate(10000)
+
+        assertEquals(200.00, rate)
+    }
 }
