@@ -14,4 +14,16 @@ class LottoGameTest {
 
         assertEquals(5, lottos.size)
     }
+
+    @Test
+    fun `로또 번호 매칭 개수가 6개 이하인지 확인`() {
+
+        val lottos = listOf(Lotto())
+        val winningNumber = listOf(1, 2, 3, 4, 5, 6)
+        val matchResults = LottoGame().match(lottos, winningNumber)
+
+        matchResults.forEach { matchCount ->
+            assertTrue(matchCount in 0..6)
+        }
+    }
 }
