@@ -4,6 +4,7 @@ import Lotto.domain.Lotto
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 
 class LottoTest {
 
@@ -16,11 +17,29 @@ class LottoTest {
     }
 
     @Test
+    fun `번호가 1 ~ 45 사이가 아닐 때 예외 발생 확인`() {
+        val exception = assertThrows<IllegalArgumentException> {
+            Lotto(listOf(1, 2, 3, 4, 5, 46))
+        }
+
+        assertEquals("로또 번호는 1부터 45 사이의 숫자여야 합니다.", exception.message)
+    }
+
+    @Test
     fun `번호가 6개인지 확인`() {
         val lotto = Lotto()
         val numbers = lotto.number
 
         assertEquals(6, numbers.size)
+    }
+
+    @Test
+    fun `번호가 6개가 아닐 때 예외 발생 확인`() {
+        val exception = assertThrows<IllegalArgumentException> {
+            Lotto(listOf(1, 2, 3, 4, 5))
+        }
+
+        assertEquals("로또 번호는 6개여야 합니다.", exception.message)
     }
 
     @Test
