@@ -3,7 +3,7 @@ package Calculator
 class DelimiterManager {
 
     fun getTokens(text: String): List<String> {
-        val result = Regex("//(.*)\n(.*)").find(text)
+        val result = Regex(CUSTOM_DELIMITER_PATTERN).find(text)
         return if (result != null) {
             val customDelimiter = result.groupValues[1]
             val delimiters = "$DEFAULT_DELIMITER|$customDelimiter"
@@ -14,6 +14,7 @@ class DelimiterManager {
     }
 
     companion object {
+        private const val CUSTOM_DELIMITER_PATTERN = "//(.*)\n(.*)"
         private const val DEFAULT_DELIMITER = ",|:"
     }
 }
