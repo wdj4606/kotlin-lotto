@@ -21,10 +21,10 @@ object ResultView {
         println("당첨 통계")
         println("---------")
 
-        println("3개 일치 (${LottoEventMachine.REWARD_4TH}원)- ${results.count { it.rank == 4}}개")
-        println("4개 일치 (${LottoEventMachine.REWARD_3RD}원)- ${results.count { it.rank == 3}}개")
-        println("5개 일치 (${LottoEventMachine.REWARD_2ND}원)- ${results.count { it.rank == 2}}개")
-        println("6개 일치 (${LottoEventMachine.REWARD_1ST}원)- ${results.count { it.rank == 1}}개")
+        println("3개 일치 (${Rank.Fourth.reward}원)- ${results.count { it.rank == 4}}개")
+        println("4개 일치 (${Rank.Third.reward}원)- ${results.count { it.rank == 3}}개")
+        println("5개 일치 (${Rank.Second.reward}원)- ${results.count { it.rank == 2}}개")
+        println("6개 일치 (${Rank.First.reward}원)- ${results.count { it.rank == 1}}개")
 
     }
 

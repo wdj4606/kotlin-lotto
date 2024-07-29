@@ -1,6 +1,4 @@
-import lotto.LottoEventMachine
-import lotto.LottoTicket
-import lotto.LottoVendingMachine
+import lotto.*
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
@@ -29,7 +27,7 @@ class LottoEventMachineTest {
 
         val results = LottoEventMachine.result(listOf(40,41,42,43,44,45), tickets)
 
-        val totalReward = BigDecimal(LottoEventMachine.REWARD_1ST)
+        val totalReward = BigDecimal(Rank.First.reward)
         val totalPrice = BigDecimal(LottoVendingMachine.PRICE).multiply(BigDecimal(results.size))
         val ratio = totalReward.divide(totalPrice, 2, RoundingMode.HALF_UP)
 
