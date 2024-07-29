@@ -4,7 +4,7 @@ import org.junit.jupiter.params.provider.ValueSource
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 
-class StringSplitterText {
+class StringSplitterTest {
     private lateinit var parser: StringSplitter
 
     @BeforeEach

@@ -16,7 +16,7 @@ object StringValidator {
 
     fun convertValidateStringToNumber(text: String): Int {
         val trySingleInt = convertSingleInteger(text)
-        require (trySingleInt != null) { MSG_EXCEPTION_FORMULA_ERROR }
+        require(trySingleInt != null) { MSG_EXCEPTION_FORMULA_ERROR }
         require(trySingleInt >= 0) { MSG_EXCEPTION_NEGATIVE }
         return trySingleInt
     }
