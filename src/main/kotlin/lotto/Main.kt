@@ -7,9 +7,7 @@ fun main() {
     ResultView.printTickets(tickets)
 
     val winningNumbers = InputView.getWinningNumbers()
-    val results = LottoEventMachine.result(winningNumbers, tickets)
-    ResultView.printResult(results)
+    val results = tickets.map { ticket -> ticket.result(winningNumbers) }
 
-    val ratio = LottoEventMachine.ratioOfReturn(results)
-    ResultView.printRatioOfReturn(ratio)
+    ResultView.printResult(results)
 }

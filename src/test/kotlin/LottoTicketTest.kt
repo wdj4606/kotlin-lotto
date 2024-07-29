@@ -1,4 +1,5 @@
 import lotto.LottoTicket
+import org.assertj.core.api.Assertions
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
@@ -34,5 +35,18 @@ class LottoTicketTest {
             assertThat(number).isGreaterThanOrEqualTo(nPrev)
             nPrev = number
         }
+    }
+
+    @DisplayName(value = "로또 티켓의 당첨 여부를 알 수 있다.")
+    @Test
+    fun getLottoResult() {
+        val fakeGenerator = FakeReverseGenerator()
+        val ticket = LottoTicket(fakeGenerator)
+
+        val result1 = ticket.result(listOf(40, 41, 42, 43, 44, 45))
+        val result2 = ticket.result(listOf(37, 38, 39, 40, 41, 42))
+
+        assertThat(result1.rank).isEqualTo(1)
+        assertThat(result2.rank).isEqualTo(4)
     }
 }

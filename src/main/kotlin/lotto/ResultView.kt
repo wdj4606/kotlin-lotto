@@ -1,6 +1,7 @@
 package lotto
 
 import java.math.BigDecimal
+import java.math.RoundingMode
 
 object ResultView {
     fun printTickets(tickets: List<LottoTicket>) {
@@ -26,9 +27,20 @@ object ResultView {
         println("5개 일치 (${Rank.Second.reward}원)- ${results.count { it.rank == 2}}개")
         println("6개 일치 (${Rank.First.reward}원)- ${results.count { it.rank == 1}}개")
 
+        println("총 수익률은 ${ratioOfReturn(results)}입니다.")
     }
 
-    fun printRatioOfReturn(ratio: BigDecimal) {
-        println("총 수익률은 ${ratio}입니다.")
+    private fun ratioOfReturn(results: List<LottoResult>): BigDecimal {
+        if (results.isEmpty()) {
+            return BigDecimal.ZERO
+        }
+
+        var total = BigDecimal.ZERO
+        for (result in results) {
+            total = total.add(BigDecimal(result.reward))
+        }
+
+        val totalPrice = BigDecimal(LottoVendingMachine.PRICE).multiply(BigDecimal(results.size))
+        return total.divide(totalPrice, 2, RoundingMode.HALF_UP)
     }
 }
