@@ -1,8 +1,9 @@
 package lotto
 
 object LottoNumberGenerator : GeneratorInterface {
-    override fun generate(): Int {
-        val range = (1..45)
-        return range.random()
+    private const val LOTTO_NUMBER_SIZE = 6
+    override fun generate(): List<Int> {
+        val numbers = (1..45).toList()
+        return numbers.shuffled().take(LOTTO_NUMBER_SIZE).sorted()
     }
 }

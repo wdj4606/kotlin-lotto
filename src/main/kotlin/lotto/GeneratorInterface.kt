@@ -1,5 +1,5 @@
 package lotto
 
 interface GeneratorInterface {
-    fun generate(): Int
+    fun generate(): List<Int>
 }

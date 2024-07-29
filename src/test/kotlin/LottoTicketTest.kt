@@ -10,7 +10,7 @@ class LottoTicketTest {
 
     @BeforeEach
     fun setUp() {
-        lottoTicket = LottoTicket(FakeReverseGenerator())
+        lottoTicket = LottoTicket(FakeGenerator.generate())
     }
 
     @DisplayName(value = "로또 티켓은 6개의 숫자를 List로 가진다.")
@@ -31,6 +31,7 @@ class LottoTicketTest {
     @Test
     fun lottoNumberSortedAscend() {
         var nPrev = 0
+        println(lottoTicket.numbers)
         for (number in lottoTicket.numbers) {
             assertThat(number).isGreaterThanOrEqualTo(nPrev)
             nPrev = number
@@ -40,8 +41,7 @@ class LottoTicketTest {
     @DisplayName(value = "로또 티켓의 당첨 여부를 알 수 있다.")
     @Test
     fun getLottoResult() {
-        val fakeGenerator = FakeReverseGenerator()
-        val ticket = LottoTicket(fakeGenerator)
+        val ticket = LottoTicket(FakeGenerator.generate())
 
         val result1 = ticket.result(listOf(40, 41, 42, 43, 44, 45))
         val result2 = ticket.result(listOf(37, 38, 39, 40, 41, 42))

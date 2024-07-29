@@ -32,7 +32,7 @@ enum class Rank(val rank: Int, val reward: Int, val match: Int) {
 
 data class LottoResult(val rank: Int, val reward: Int, val ticket: LottoTicket)
 
-class LottoTicket(private val generatorParam: GeneratorInterface = LottoNumberGenerator, val numbers: List<Int> = List(6) {generatorParam.generate()}.sorted()) {
+class LottoTicket(val numbers: List<Int>) {
     fun result(winningNumbers: List<Int>): LottoResult {
         val count = winningNumberCount(winningNumbers)
         val rank = Rank.getByMatch(count)

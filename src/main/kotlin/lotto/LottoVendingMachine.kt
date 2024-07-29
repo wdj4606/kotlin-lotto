@@ -7,7 +7,7 @@ object LottoVendingMachine {
         val count = money / PRICE
         val tickets = mutableListOf<LottoTicket>()
         repeat(count) {
-            tickets.add(LottoTicket())
+            tickets.add(LottoTicket(LottoNumberGenerator.generate()))
         }
         return tickets
     }
